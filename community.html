@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Join the CareerFixx community on WhatsApp and Instagram. Stay connected, get updates, and grow together with 5000+ learners.">
+  <title>Community — CareerFixx | Connect With Us</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ===== COMMUNITY PAGE STYLES ===== */
+    .community-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .community-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background:
+        radial-gradient(circle at 30% 40%, rgba(79,70,229,0.18) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(124,58,237,0.12) 0%, transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(37,211,102,0.08) 0%, transparent 40%);
+      animation: heroBg 15s ease-in-out infinite alternate;
+    }
+    .community-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(to top, var(--bg-primary), transparent);
+      z-index: 0;
+    }
+    .community-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+    .community-content h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+    .community-content > p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 50px;
+    }
+
+    /* Community Cards Grid */
+    .community-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .community-card {
+      padding: 40px 32px;
+      border-radius: var(--radius);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .community-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      transform: scaleX(0);
+      transition: transform 0.4s;
+      transform-origin: left;
+    }
+    .community-card:hover::before {
+      transform: scaleX(1);
+    }
+    .community-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    /* WhatsApp Card */
+    .community-card.whatsapp::before {
+      background: linear-gradient(135deg, #25d366, #128c7e);
+    }
+    .community-card.whatsapp:hover {
+      border-color: rgba(37, 211, 102, 0.4);
+      box-shadow: 0 20px 60px rgba(37, 211, 102, 0.15);
+    }
+
+    /* Instagram Card */
+    .community-card.instagram::before {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    }
+    .community-card.instagram:hover {
+      border-color: rgba(225, 48, 108, 0.4);
+      box-shadow: 0 20px 60px rgba(225, 48, 108, 0.15);
+    }
+
+    .community-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 2.2rem;
+      position: relative;
+    }
+    .community-card.whatsapp .community-icon {
+      background: linear-gradient(135deg, rgba(37, 211, 102, 0.2), rgba(18, 140, 126, 0.15));
+      border: 1px solid rgba(37, 211, 102, 0.3);
+    }
+    .community-card.instagram .community-icon {
+      background: linear-gradient(135deg, rgba(225, 48, 108, 0.2), rgba(131, 58, 180, 0.15));
+      border: 1px solid rgba(225, 48, 108, 0.3);
+    }
+
+    /* SVG Icon Styles */
+    .community-icon svg {
+      width: 36px;
+      height: 36px;
+    }
+    .community-card.whatsapp .community-icon svg {
+      fill: #25d366;
+    }
+    .community-card.instagram .community-icon svg {
+      fill: url(#insta-gradient);
+    }
+
+    .community-card h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .community-card > p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .community-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+      color: #fff;
+    }
+    .community-card.whatsapp .community-btn {
+      background: linear-gradient(135deg, #25d366, #128c7e);
+    }
+    .community-card.whatsapp .community-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    }
+    .community-card.instagram .community-btn {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    }
+    .community-card.instagram .community-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(225, 48, 108, 0.4);
+    }
+
+    /* Pulse ring animation for icons */
+    .community-icon::after {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: -6px;
+      right: -6px;
+      bottom: -6px;
+      border-radius: 24px;
+      border: 2px solid transparent;
+      animation: iconPulse 3s ease-in-out infinite;
+    }
+    .community-card.whatsapp .community-icon::after {
+      border-color: rgba(37, 211, 102, 0.3);
+    }
+    .community-card.instagram .community-icon::after {
+      border-color: rgba(225, 48, 108, 0.3);
+    }
+    @keyframes iconPulse {
+      0%, 100% { opacity: 0; transform: scale(0.95); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+
+    /* Community benefits section */
+    .community-benefits {
+      padding: 80px 0 100px;
+      position: relative;
+      z-index: 1;
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .benefit-card {
+      padding: 32px 24px;
+      border-radius: var(--radius);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      text-align: center;
+      transition: all 0.4s;
+    }
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-glow);
+    }
+    .benefit-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+    .benefit-card h4 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .benefit-card p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* Back to home link */
+    .back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 48px;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s;
+    }
+    .back-home:hover {
+      color: var(--text-primary);
+      border-color: var(--accent-violet);
+      background: rgba(124, 58, 237, 0.1);
+    }
+
+    /* Responsive */
+    @media(max-width: 768px) {
+      .community-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+      }
+      .benefits-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Background Orbs -->
+<div class="bg-orb bg-orb--1"></div>
+<div class="bg-orb bg-orb--2"></div>
+<div class="bg-orb bg-orb--3"></div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Your<span>Affilate</span><span>Partner</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#courses">Courses</a></li>
+      <li><a href="index.html#pricing">Packages</a></li>
+      <li><a href="index.html#testimonials">Reviews</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="community.html" style="color:var(--accent-blue);">Community</a></li>
+      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdzvCKVojXVi3o55bzMjWxKmPmZy6to6GdIZOSanuWAtL7l-Q/viewform?usp=header" target="_blank" class="nav-cta">Enroll Now →</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- SVG Gradient Definition for Instagram icon -->
+<svg width="0" height="0" style="position:absolute;">
+  <defs>
+    <linearGradient id="insta-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f09433"/>
+      <stop offset="25%" style="stop-color:#e6683c"/>
+      <stop offset="50%" style="stop-color:#dc2743"/>
+      <stop offset="75%" style="stop-color:#cc2366"/>
+      <stop offset="100%" style="stop-color:#bc1888"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- Community Hero -->
+<section class="community-hero">
+  <div class="community-content">
+    <div class="hero-badge"><span class="dot"></span> Join 5000+ Learners</div>
+    <h1>Join Our <span class="gradient-text">Community</span></h1>
+    <p>Stay connected, get exclusive updates, tips, and be part of a growing network of ambitious learners building their dream careers.</p>
+
+    <div class="community-grid">
+      <!-- WhatsApp Card -->
+      <div class="community-card whatsapp reveal">
+        <div class="community-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+        </div>
+        <h3>WhatsApp Channel</h3>
+        <p>Get instant updates, course launches, exclusive offers & career tips delivered right to your WhatsApp.</p>
+        <a href="https://whatsapp.com/channel/0029Vb8IlJ1DJ6HASl1a6V2W" target="_blank" class="community-btn" id="whatsapp-join-btn">
+          Join Channel →
+        </a>
+      </div>
+
+      <!-- Instagram Card -->
+      <div class="community-card instagram reveal">
+        <div class="community-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+          </svg>
+        </div>
+        <h3>Instagram</h3>
+        <p>Follow us for daily inspiration, success stories, skill tips, reels & behind-the-scenes content.</p>
+        <a href="https://www.instagram.com/abhineetgarga/?hl=en" target="_blank" class="community-btn" id="instagram-follow-btn">
+          Follow Us →
+        </a>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-home">← Back to Home</a>
+  </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="community-benefits">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag">Why Join</span>
+      <h2>Benefits of Our Community</h2>
+      <p>Be more than just a student — become part of a thriving ecosystem of growth.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">🚀</div>
+        <h4>Early Access</h4>
+        <p>Be the first to know about new course launches, features & exclusive deals.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">💡</div>
+        <h4>Daily Tips</h4>
+        <p>Get daily career tips, industry insights, and actionable skill-building advice.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">🤝</div>
+        <h4>Network & Grow</h4>
+        <p>Connect with 5000+ like-minded learners, mentors, and industry professionals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="font-size:1.8rem;">Career<span style="background:var(--gradient-main);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Fixx</span></a>
+        <p>Empowering India's youth with practical, industry-relevant digital skills since 2023. Join 5000+ students building their dream careers.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#courses">Courses</a></li>
+          <li><a href="index.html#pricing">Packages</a></li>
+          <li><a href="community.html">Community</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Courses</h4>
+        <ul>
+          <li><a href="https://careerfixx.com/courses" target="_blank">Digital Marketing</a></li>
+          <li><a href="https://careerfixx.com/courses" target="_blank">Video Editing</a></li>
+          <li><a href="https://careerfixx.com/courses" target="_blank">Web Development</a></li>
+          <li><a href="https://careerfixx.com/courses" target="_blank">AI & Automation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+918368471451">📞 +91 8368471451</a></li>
+          <li><a href="https://careerfixx.com/contact-us" target="_blank">📧 Contact Form</a></li>
+          <li><a href="#">📍 Greater Noida, UP</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Career Fixx — All Rights Reserved</p>
+      <p>
+        <a href="https://careerfixx.com/privacy_policy" target="_blank">Privacy Policy</a> |
+        <a href="https://careerfixx.com/term_and_condition" target="_blank">Terms</a> |
+        <a href="https://careerfixx.com/cancel_and_refund_policy" target="_blank">Refund Policy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/918368471451?text=Hi!%20I'm%20interested%20in%20Career%20Fixx%20courses.%20Can%20you%20help%20me%20choose%20the%20right%20package?" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">💬</a>
+
+<script>
+// Navbar scroll effect
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Hamburger menu
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => navLinks.classList.remove('active'));
+});
+
+// Scroll reveal
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('active'), i * 80);
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>
